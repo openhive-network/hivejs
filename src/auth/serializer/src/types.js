@@ -106,7 +106,9 @@ Types.asset = {
         {
             // Legacy Case
             let b_copy = b.copy(b.offset, b.offset + 7)
-            symbol = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
+            const tempp = new Buffer(b_copy.toBinary(), "binary").toString()
+            console.log(tempp)
+            symbol = tempp.replace(/\x00/g, "")
             b.skip(7)
             // "1.000 HIVE" always written with full precision
             amount_string = fromImpliedDecimal(amount, precision)
