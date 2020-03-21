@@ -106,9 +106,7 @@ Types.asset = {
         {
             // Legacy Case
             let b_copy = b.copy(b.offset, b.offset + 7)
-            const tempp = new Buffer(b_copy.toBinary(), "binary").toString()
-            console.log(tempp)
-            symbol = tempp.replace(/\x00/g, "")
+            symbol = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
             b.skip(7)
             // "1.000 HIVE" always written with full precision
             amount_string = fromImpliedDecimal(amount, precision)
@@ -221,10 +219,18 @@ Types.asset_symbol = {
             // Legacy Case
             let b_copy = b.copy(b.offset, b.offset + 7)
             let symbol = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
-            if(symbol == "HIVE" || symbol == "TESTS")
+            if(symbol == "HIVE" || symbol == "TESTS") {
               nai_string = "@@000000021"
-            else if(symbol == "HBD" || symbol == "TBD")
+
+              // workaround for hf23
+              symbol = symbol == "HIVE" ? "STEEM" : symbol
+            }
+            else if(symbol == "HBD" || symbol == "TBD") {
               nai_string = "@@000000013"
+
+              // workaround for hf23
+              symbol = symbol == "HBD" ? "SBD" : symbol
+            }
             else if(symbol == "VESTS")
               nai_string = "@@000000037"
             else
@@ -255,7 +261,7 @@ Types.asset_symbol = {
             break
           case "@@000000013":
             precision = 3
-            symbol = Config.get( "address_prefix" ) == "STM" ? "HND" : "TBD"
+            symbol = Config.get( "address_prefix" ) == "STM" ? "HBD" : "TBD"
             break
           case "@@000000037":
             precision = 6
