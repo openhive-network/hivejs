@@ -156,6 +156,7 @@ Types.asset = {
             let res = object.split(" ")
             amount = res[0]
             symbol = res[1]
+            symbol = symbol == "HIVE" ? "STEEM" : symbol == "HBD" ? "SBD" : symbol
 
             if(symbol.startsWith("@@"))
             {
