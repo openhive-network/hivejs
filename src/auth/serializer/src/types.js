@@ -132,11 +132,11 @@ Types.asset = {
           {
             case "@@000000021":
               precision = 3
-              symbol = Config.get( "address_prefix" ) == "STM" ? "HIVE" : "TESTS"
+              symbol = Config.get( "address_prefix" ) == "STM" ? "STEEM" : "TESTS"
               break
             case "@@000000013":
               precision = 3
-              symbol = Config.get( "address_prefix" ) == "STM" ? "HBD" : "TBD"
+              symbol = Config.get( "address_prefix" ) == "STM" ? "SBD" : "TBD"
               break
             case "@@000000037":
               precision = 6
@@ -193,7 +193,7 @@ Types.asset = {
         return object
     },
     toObject(object, debug = {}){
-        if (debug.use_default && object === undefined) { return "0.000 HIVE"; }
+        if (debug.use_default && object === undefined) { return "0.000 STEEM"; }
         return object
     }
 }
@@ -257,11 +257,11 @@ Types.asset_symbol = {
         {
           case "@@000000021":
             precision = 3
-              symbol = Config.get( "address_prefix" ) == "STM" ? "HIVE" : "TESTS"
+              symbol = Config.get( "address_prefix" ) == "STM" ? "STEEM" : "TESTS"
             break
           case "@@000000013":
             precision = 3
-            symbol = Config.get( "address_prefix" ) == "STM" ? "HBD" : "TBD"
+            symbol = Config.get( "address_prefix" ) == "STM" ? "SBD" : "TBD"
             break
           case "@@000000037":
             precision = 6
@@ -289,7 +289,7 @@ Types.asset_symbol = {
         return object
     },
     toObject(object, debug = {}){
-        if (debug.use_default && object === undefined) { return "HIVE"; }
+        if (debug.use_default && object === undefined) { return "STEEM"; }
         return object
     }
 }
