@@ -2,16 +2,17 @@
 # yarn lockfile v1
 
 
-"@steemit/libcrypto@^1.0.1":
+"@hivechain/libcrypto@^1.0.1":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@steemit/libcrypto/-/libcrypto-1.0.1.tgz#c31ab3e5deb667628169b3d54d746b015de31a79"
+  resolved "https://registry.yarnpkg.com/@hivechain/libcrypto/-/libcrypto-1.0.1.tgz#6072c725c5194dfba8a7818dc6ae472973ddbe15"
+  integrity sha512-Akf6YWSoQcZJBmK/KeAwHVDbEYoPl0LR2EGRdH9hDjFuTVow4AIOiRqPEWj+G4zsWLNOpmhnZAqwhyeuhlSi0g==
 
-"@steemit/rpc-auth@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@steemit/rpc-auth/-/rpc-auth-1.1.1.tgz#8f6239e89783d2b251b49e9e1b9486b5d167f944"
-  integrity sha512-Eb8BW3O1y4+/+Dbf+LqGVmgXYqyfHxP9mBlmzkpjXiIepTpxoK90NIGrneqcnEGq0TR2nSt4BVv9Ur9c+hxoig==
+"@hivechain/rpc-auth@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@hivechain/rpc-auth/-/rpc-auth-1.1.2.tgz#54a5cff86cc4bfe6251924f2fb9fa63559e3a380"
+  integrity sha512-eIRKLa0VyWpQBHPAh8fr3rbqaDm/MTSn2tW9lgNNv/+CYVojXZTe20Li/q8ZZxaHWlR7oIo2/jFhMObugHG/rw==
   dependencies:
-    "@steemit/libcrypto" "^1.0.1"
+    "@hivechain/libcrypto" "^1.0.1"
 
 abbrev@1:
   version "1.1.1"

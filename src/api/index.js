@@ -17,7 +17,7 @@ import {
 } from './transports/http';
 import {
     sign as signRequest
-} from '@steemit/rpc-auth';
+} from '@hivechain/rpc-auth';
 
 class Hivejs extends EventEmitter {
     constructor(options = {}) {

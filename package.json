@@ -1,6 +1,6 @@
 {
   "name": "@hivechain/hivejs",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Hivejs the JavaScript API for Hive blockchain",
   "main": "lib/index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/openhive-network/hivejs#readme",
   "dependencies": {
-    "@steemit/rpc-auth": "^1.1.1",
+    "@hivechain/rpc-auth": "^1.1.2",
     "bigi": "^1.4.2",
     "bluebird": "^3.4.6",
     "browserify-aes": "^1.0.6",
