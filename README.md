@@ -42,9 +42,9 @@ hivejs.api.getAccounts(['ned', 'dan'], function(err, response){
 ```
 
 ## CDN
-https://cdn.jsdelivr.net/npm/hivejs/dist/hivejs.min.js<br/>
+https://cdn.jsdelivr.net/npm/@hivechain/hivejs/dist/hivejs.min.js<br/>
 ```html
-<script src="https://cdn.jsdelivr.net/npm/hive/dist/hivejs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@hivechain/hivejs/dist/hivejs.min.js"></script>
 ```
 
 ## Webpack
@@ -53,7 +53,7 @@ https://cdn.jsdelivr.net/npm/hivejs/dist/hivejs.min.js<br/>
 ## Server
 ## Install
 ```
-$ npm install hivejs --save
+$ npm install @hivechain/hivejs --save
 ```
 
 ## RPC Servers
@@ -66,7 +66,7 @@ https://rpc.esteem.app<br/>
 ## Examples
 ### Broadcast Vote
 ```js
-var hivejs = require('hivejs');
+var hivejs = require('@hivechain/hivejs');
 
 var wif = hivejs.auth.toWif(username, password, 'posting');
 hivejs.broadcast.vote(wif, voter, author, permlink, weight, function(err, result) {
