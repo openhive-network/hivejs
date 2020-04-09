@@ -25,7 +25,7 @@
 
 # Install
 ```
-$ npm install hivejs --save
+$ npm install @hivechain/hivejs --save
 ```
 
 # Browser 
