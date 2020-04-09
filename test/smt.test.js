@@ -1,18 +1,18 @@
 import assert from 'assert'
 import Promise from 'bluebird';
 import should from 'should';
-import steem from '../src';
+import hivejs from '../src';
 
-const username = process.env.STEEM_USERNAME || 'guest123';
-const password = process.env.STEEM_PASSWORD;
-const activeWif = steem.auth.toWif(username, password, 'active');
+const username = process.env.HIVE_USERNAME || 'guest123';
+const password = process.env.HIVE_PASSWORD;
+const activeWif = hivejs.auth.toWif(username, password, 'active');
 
-describe('steem.smt:', () => {
+describe('hivejs.smt:', () => {
 
   describe('smt creation ops', () => {
     it('signs and verifies smt_create', function(done) {
-      let url = steem.config.get('uri');
-      steem.api.setOptions({ url: url, useAppbaseApi: true });
+      let url = hivejs.config.get('uri');
+      hivejs.api.setOptions({ url: url, useAppbaseApi: true });
 
       let tx = {
         'operations': [[
@@ -24,13 +24,13 @@ describe('steem.smt:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -56,13 +56,13 @@ describe('steem.smt:', () => {
         ]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -103,13 +103,13 @@ describe('steem.smt:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -146,13 +146,13 @@ describe('steem.smt:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -174,13 +174,13 @@ describe('steem.smt:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -203,13 +203,13 @@ describe('steem.smt:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -229,13 +229,13 @@ describe('steem.smt:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -264,13 +264,13 @@ describe('steem.smt:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -301,13 +301,13 @@ describe('steem.smt:', () => {
         ]}}]]}]]}]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -330,13 +330,13 @@ describe('steem.smt:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
-        if(result['blockchain_version'] < '0.23.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
+        if(result['blockchain_version'] < '0.25.0') return done(); /* SKIP AS THIS WILL ONLY PASS ON A TESTNET CURRENTLY */
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );

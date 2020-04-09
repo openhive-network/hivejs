@@ -47,8 +47,8 @@ let allTypes = {
     protocol_id_type: "1.1.1", object_id_type: "1.1.1", //vote_id: "2:1",
 
     static_variant: [
-        ["transfer", {from:"alice", to:"bob", amount: "1.000 STEEM", memo: ""}],
-        ["price", {base: "1.000 STEEM", quote: "1.000 STEEM"}],
+        ["transfer", {from:"alice", to:"bob", amount: "1.000 HIVE", memo: ""}],
+        ["price", {base: "1.000 HIVE", quote: "1.000 HIVE"}],
     ],
 
     map: [[4,3], [2,1]],
@@ -63,7 +63,7 @@ let allTypes = {
     time_point_sec3: '2017-02-16T20:27:12',
 }
 
-describe("steem.auth: all types", ()=> {
+describe("hivejs.auth: all types", ()=> {
 
     let { toObject, fromObject, toBuffer, fromBuffer } = AllTypes
 

@@ -6,7 +6,7 @@ var secureRandom = require('secure-random');
 var hash = require('../src/auth/ecc/src/hash');
 var key = require('../src/auth/ecc/src/key_utils');
 
-describe("steem.auth: Crypto", function() {
+describe("hivejs.auth: Crypto", function() {
 
     /*it "Computes public key", ->
         private_key = PrivateKey.fromHex decrypted_key.substring 0, 64
@@ -27,7 +27,7 @@ describe("steem.auth: Crypto", function() {
 
 })
 
-describe("steem.auth: derives", ()=> {
+describe("hivejs.auth: derives", ()=> {
     
     let prefix = config.get("address_prefix")
     let one_time_private = PrivateKey.fromHex("8fdfdde486f696fd7c6313325e14d3ff0c34b6e2c390d1944cbfe150f4457168")

@@ -2,7 +2,7 @@ import { PrivateKey, PublicKey, Address } from "../src/auth/ecc";
 import assert from "assert"
 
 var test = function(key) {
-    describe("steem.auth: key_formats", function() {
+    describe("hivejs.auth: key_formats", function() {
         
         it("Calcualtes public key from private key", function() {
             var private_key = PrivateKey.fromHex(key.private_key);
@@ -98,7 +98,6 @@ test({
     Compressed_BTC:	"STMANNTSEaUviJgWLzJBersPmyFZBY4jJETY",
     Uncompressed_PTS:	"STMEgj7RM6FBwSoccGaESJLC3Mi18785bM3T",
     Compressed_PTS:	"STMD5rYtofD6D4UHJH6mo953P5wpBfMhdMEi",
-    // https://github.com/steemit/steem-js/issues/267
     null_hex: "000000000000000000000000000000000000000000000000000000000000000000",
     null_address: "STM1111111111111111111111111111111114T1Anm"
 });

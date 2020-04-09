@@ -1,6 +1,6 @@
 FROM node:6
-ADD ./package.json /steemjs/package.json
-WORKDIR /steemjs
+ADD ./package.json /hivejs/package.json
+WORKDIR /hivejs
 RUN npm install
-ADD . /steemjs
+ADD . /hivejs
 RUN npm test

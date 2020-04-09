@@ -1,28 +1,28 @@
 import assert from "assert"
 import Promise from 'bluebird';
 import should from 'should';
-import steem from '../src';
+import hivejs from '../src';
 
-const username = process.env.STEEM_USERNAME || 'guest123';
-const password = process.env.STEEM_PASSWORD;
-const activeWif = steem.auth.toWif(username, password, 'active');
+const username = process.env.HIVE_USERNAME || 'guest123';
+const password = process.env.HIVE_PASSWORD;
+const activeWif = hivejs.auth.toWif(username, password, 'active');
 
-describe('steem.hf21-accounts:', () => {
+describe('hivejs.hf21-accounts:', () => {
   it('has generated methods', () => {
-    should.exist(steem.broadcast.createProposal);
-    should.exist(steem.broadcast.updateProposalVotes);
-    should.exist(steem.broadcast.removeProposal);
+    should.exist(hivejs.broadcast.createProposal);
+    should.exist(hivejs.broadcast.updateProposalVotes);
+    should.exist(hivejs.broadcast.removeProposal);
   });
 
   it('has promise methods', () => {
-    should.exist(steem.broadcast.createProposalAsync);
-    should.exist(steem.broadcast.updateProposalVotesAsync);
-    should.exist(steem.broadcast.removeProposalAsync);
+    should.exist(hivejs.broadcast.createProposalAsync);
+    should.exist(hivejs.broadcast.updateProposalVotesAsync);
+    should.exist(hivejs.broadcast.removeProposalAsync);
   });
 
   describe('create proposal ops', () => {
-/*  Skip these tests. Steem-js test infrastructure not set up for testing active auths
-    Blocked by Steem issue #3546
+/*  Skip these tests. hivejs test infrastructure not set up for testing active auths
+    Blocked by Hive issue #3546
     it('signs and verifies create_proposal', function(done) {
       let permlink = 'test';
 
@@ -39,13 +39,13 @@ describe('steem.hf21-accounts:', () => {
         }]]
       }
 
-      steem.api.callAsync('condenser_api.get_version', []).then((result) => {
+      hivejs.api.callAsync('condenser_api.get_version', []).then((result) => {
         if(result['blockchain_version'] < '0.22.0') return done();
         result.should.have.property('blockchain_version');
 
-        steem.broadcast._prepareTransaction(tx).then(function(tx){
-          tx = steem.auth.signTransaction(tx, [activeWif]);
-          steem.api.verifyAuthorityAsync(tx).then(
+        hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+          tx = hivejs.auth.signTransaction(tx, [activeWif]);
+          hivejs.api.verifyAuthorityAsync(tx).then(
             (result) => {result.should.equal(true); done();},
             (err)    => {done(err);}
           );
@@ -65,9 +65,9 @@ describe('steem.hf21-accounts:', () => {
 
       return done();
 
-      steem.broadcast._prepareTransaction(tx).then(function(tx){
-        tx = steem.auth.signTransaction(tx, [activeWif]);
-        steem.api.verifyAuthorityAsync(tx).then(
+      hivejs.broadcast._prepareTransaction(tx).then(function(tx){
+        tx = hivejs.auth.signTransaction(tx, [activeWif]);
+        hivejs.api.verifyAuthorityAsync(tx).then(
           (result) => {result.should.equal(true); done();},
           (err)    => {done(err);}
         );

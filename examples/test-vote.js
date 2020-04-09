@@ -1,9 +1,9 @@
-const steem = require('../lib');
+const hivejs = require('../lib');
 
 const username = 'guest123';
 const wif = '5JRaypasxMx1L97ZUX7YuC5Psb5EAbF821kkAGtBj7xCJFQcbLg';
 
-steem
+hivejs
   .broadcast
   .vote(
     wif,

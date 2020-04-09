@@ -132,11 +132,11 @@ Types.asset = {
           {
             case "@@000000021":
               precision = 3
-              symbol = Config.get( "address_prefix" ) == "STM" ? "STEEM" : "TESTS"
+              symbol = Config.get( "address_prefix" ) == "STM" ? "HIVE" : "TESTS"
               break
             case "@@000000013":
               precision = 3
-              symbol = Config.get( "address_prefix" ) == "STM" ? "SBD" : "TBD"
+              symbol = Config.get( "address_prefix" ) == "STM" ? "HBD" : "TBD"
               break
             case "@@000000037":
               precision = 6
@@ -156,7 +156,6 @@ Types.asset = {
             let res = object.split(" ")
             amount = res[0]
             symbol = res[1]
-            symbol = symbol == "HIVE" ? "STEEM" : symbol == "HBD" ? "SBD" : symbol
 
             if(symbol.startsWith("@@"))
             {
@@ -194,7 +193,7 @@ Types.asset = {
         return object
     },
     toObject(object, debug = {}){
-        if (debug.use_default && object === undefined) { return "0.000 STEEM"; }
+        if (debug.use_default && object === undefined) { return "0.000 HIVE"; }
         return object
     }
 }
@@ -220,17 +219,11 @@ Types.asset_symbol = {
             // Legacy Case
             let b_copy = b.copy(b.offset, b.offset + 7)
             let symbol = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
-            if(symbol == "HIVE" || symbol == "TESTS") {
+            if(symbol == "HIVE" || symbol == "STEEM" || symbol == "TESTS") {
               nai_string = "@@000000021"
-
-              // workaround for hf23
-              symbol = symbol == "HIVE" ? "STEEM" : symbol
             }
-            else if(symbol == "HBD" || symbol == "TBD") {
+            else if(symbol == "HBD" || symbol == "SBD" || symbol == "TBD") {
               nai_string = "@@000000013"
-
-              // workaround for hf23
-              symbol = symbol == "HBD" ? "SBD" : symbol
             }
             else if(symbol == "VESTS")
               nai_string = "@@000000037"
@@ -258,11 +251,11 @@ Types.asset_symbol = {
         {
           case "@@000000021":
             precision = 3
-              symbol = Config.get( "address_prefix" ) == "STM" ? "STEEM" : "TESTS"
+              symbol = Config.get( "address_prefix" ) == "STM" ? "HIVE" : "TESTS"
             break
           case "@@000000013":
             precision = 3
-            symbol = Config.get( "address_prefix" ) == "STM" ? "SBD" : "TBD"
+            symbol = Config.get( "address_prefix" ) == "STM" ? "HBD" : "TBD"
             break
           case "@@000000037":
             precision = 6
@@ -290,7 +283,7 @@ Types.asset_symbol = {
         return object
     },
     toObject(object, debug = {}){
-        if (debug.use_default && object === undefined) { return "STEEM"; }
+        if (debug.use_default && object === undefined) { return "HIVE"; }
         return object
     }
 }

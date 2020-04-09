@@ -1,11 +1,11 @@
 {
-  "name": "@hivechain/steem-js",
-  "version": "0.7.12",
-  "description": "Steem.js the JavaScript API for Steem blockchain",
+  "name": "@hivechain/hivejs",
+  "version": "1.0.0",
+  "description": "Hivejs the JavaScript API for Hive blockchain",
   "main": "lib/index.js",
   "scripts": {
     "test": "eslint --quiet src test; mocha -t 40000 --require babel-polyfill --require babel-register",
-    "test-auth": "npm test -- --grep 'steem.auth'",
+    "test-auth": "npm test -- --grep 'hivejs.auth'",
     "build": "npm run build-browser && npm run build-node",
     "build-browser": "rm -rf dist && NODE_ENV=production node ./node_modules/webpack/bin/webpack.js && gzip -k -f ./dist/*.js && du -h ./dist/*",
     "build-node": "mkdir -p ./lib && cp -r ./src/* ./lib/ && babel ./src --out-dir ./lib",
@@ -17,20 +17,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/steemit/steem-js.git"
+    "url": "git+https://github.com/openhive-network/hivejs.git"
   },
   "keywords": [
-    "steem",
-    "steemit",
+    "hive",
+    "hivejs",
     "blockchain",
-    "steemjs"
+    "cryptocurrency"
   ],
   "author": "Fabien (https://github.com/bonustrack)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/steemit/steem-js/issues"
+    "url": "https://github.com/openhive-network/hivejs/issues"
   },
-  "homepage": "https://github.com/steemit/steem-js#readme",
+  "homepage": "https://github.com/openhive-network/hivejs#readme",
   "dependencies": {
     "@steemit/rpc-auth": "^1.1.1",
     "bigi": "^1.4.2",
@@ -75,6 +75,7 @@
     "Fabien (https://github.com/bonustrack)",
     "James Calfee (https://github.com/jcalfee)",
     "Nilesh Suthar (https://github.com/nil1511)",
-    "Pedro Tacla Yamada (https://github.com/yamadapc)"
+    "Pedro Tacla Yamada (https://github.com/yamadapc)",
+    "Feruz Muradov (https://github.com/feruzm)"
   ]
 }

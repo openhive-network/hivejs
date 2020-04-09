@@ -4,20 +4,20 @@ import newDebug from 'debug';
 import broadcastHelpers from './helpers';
 import formatterFactory from '../formatter';
 import operations from './operations';
-import steemApi from '../api';
-import steemAuth from '../auth';
+import hivejsApi from '../api';
+import hivejsAuth from '../auth';
 import { camelCase } from '../utils';
 
-const debug = newDebug('steem:broadcast');
+const debug = newDebug('hivejs:broadcast');
 const noop = function() {}
-const formatter = formatterFactory(steemApi);
+const formatter = formatterFactory(hivejsApi);
 
 const steemBroadcast = {};
 
 // Base transaction logic -----------------------------------------------------
 
 /**
- * Sign and broadcast transactions on the steem network
+ * Sign and broadcast transactions on the hive network
  */
 
 steemBroadcast.send = function steemBroadcast$send(tx, privKeys, callback) {
@@ -29,7 +29,7 @@ steemBroadcast.send = function steemBroadcast$send(tx, privKeys, callback) {
       );
       return Promise.join(
         transaction,
-        steemAuth.signTransaction(transaction, privKeys)
+        hivejsAuth.signTransaction(transaction, privKeys)
       );
     })
     .spread((transaction, signedTransaction) => {
@@ -37,7 +37,7 @@ steemBroadcast.send = function steemBroadcast$send(tx, privKeys, callback) {
         'Broadcasting transaction (transaction, transaction.operations)',
         transaction, transaction.operations
       );
-      return steemApi.broadcastTransactionSynchronousAsync(
+      return hivejsApi.broadcastTransactionSynchronousAsync(
         signedTransaction
       ).then((result) => {
         return Object.assign({}, result, signedTransaction);
@@ -48,13 +48,13 @@ steemBroadcast.send = function steemBroadcast$send(tx, privKeys, callback) {
 };
 
 steemBroadcast._prepareTransaction = function steemBroadcast$_prepareTransaction(tx) {
-  const propertiesP = steemApi.getDynamicGlobalPropertiesAsync();
+  const propertiesP = hivejsApi.getDynamicGlobalPropertiesAsync();
   return propertiesP
     .then((properties) => {
       // Set defaults on the transaction
       const chainDate = new Date(properties.time + 'Z');
       const refBlockNum = (properties.last_irreversible_block_num - 1) & 0xFFFF;
-      return steemApi.getBlockHeaderAsync(properties.last_irreversible_block_num).then((block) => {
+      return hivejsApi.getBlockHeaderAsync(properties.last_irreversible_block_num).then((block) => {
         const headBlockId = block ? block.previous : '0000000000000000000000000000000000000000';
         return Object.assign({
           ref_block_num: refBlockNum,

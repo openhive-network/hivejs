@@ -3,7 +3,7 @@ import newDebug from 'debug';
 import retry from 'retry';
 import Transport from './base';
 
-const debug = newDebug('steem:http');
+const debug = newDebug('hivejs:http');
 
 class RPCError extends Error {
   constructor(rpcError) {
@@ -56,7 +56,7 @@ export default class HttpTransport extends Transport {
     if (this.options.useAppbaseApi) {
       api = 'condenser_api';
     }
-    debug('Steem::send', api, data);
+    debug('Hivejs::send', api, data);
     const id = data.id || this.id++;
     const params = [api, data.method, data.params];
     const retriable = this.retriable(api, data);

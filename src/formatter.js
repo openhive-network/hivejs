@@ -1,7 +1,7 @@
 import get from "lodash/get";
 import { key_utils } from "./auth/ecc";
 
-module.exports = steemAPI => {
+module.exports = hivejsAPI => {
   function numberWithCommas(x) {
     return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -43,9 +43,9 @@ module.exports = steemAPI => {
     let savings_sbd_pending = 0;
     savings_withdraws.forEach(withdraw => {
       const [amount, asset] = withdraw.amount.split(" ");
-      if (asset === "HIVE") savings_pending += parseFloat(amount);
+      if (asset === "HIVE" || asset === "STEEM") savings_pending += parseFloat(amount);
       else {
-        if (asset === "HBD") savings_sbd_pending += parseFloat(amount);
+        if (asset === "HBD" || asset === "SBD") savings_sbd_pending += parseFloat(amount);
       }
     });
     return { savings_pending, savings_sbd_pending };
@@ -54,7 +54,7 @@ module.exports = steemAPI => {
   function pricePerSteem(feed_price) {
     let price_per_steem = undefined;
     const { base, quote } = feed_price;
-    if (/ HBD$/.test(base) && / HIVE$/.test(quote)) {
+    if ((/ HBD$/.test(base) && / HIVE$/.test(quote)) || (/ SBD$/.test(base) && / STEEM$/.test(quote))) {
       price_per_steem = parseFloat(base.split(" ")[0]) / parseFloat(quote.split(" ")[0]);
     }
     return price_per_steem;
@@ -72,7 +72,7 @@ module.exports = steemAPI => {
     if (!vesting_steem || !feed_price) {
       if (!gprops || !feed_price) {
         promises.push(
-          steemAPI.getStateAsync(`/@${username}`).then(data => {
+          hivejsAPI.getStateAsync(`/@${username}`).then(data => {
             gprops = data.props;
             feed_price = data.feed_price;
             vesting_steem = vestingSteem(account, gprops);
@@ -85,7 +85,7 @@ module.exports = steemAPI => {
 
     if (!open_orders) {
       promises.push(
-        steemAPI.getOpenOrdersAsync(username).then(open_orders => {
+        hivejsAPI.getOpenOrdersAsync(username).then(open_orders => {
           orders = processOrders(open_orders, assetPrecision);
         })
       );
@@ -95,7 +95,7 @@ module.exports = steemAPI => {
 
     if (!savings_withdraws) {
       promises.push(
-        steemAPI
+        hivejsAPI
           .getSavingsWithdrawFromAsync(username)
           .then(savings_withdraws => {
             savings = calculateSaving(savings_withdraws);
@@ -125,7 +125,7 @@ module.exports = steemAPI => {
         if (finishTime < currentTime) return out;
 
         const amount = parseFloat(
-          get(item, [1, "op", 1, "amount"]).replace(" HBD", "")
+          get(item, [1, "op", 1, "amount"]).replace(" HBD", "").replace(" SBD", "")
         );
         conversionValue += amount;
       }, []);
