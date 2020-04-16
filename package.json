@@ -1,6 +1,6 @@
 {
   "name": "@hivechain/hivejs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Hivejs the JavaScript API for Hive blockchain",
   "main": "lib/index.js",
   "scripts": {
